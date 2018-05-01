@@ -5,10 +5,8 @@ def fac(n):
 	
 def amic(m):
 	n = sum(fac(m))-m
-	if n==sum(fac(n))-m:
-		return  True
-	return False
-print(amic(6))
+	return n==sum(fac(n))-m
+
 t0 = time()
 a = 0
 for i in range(10001):

@@ -14,5 +14,5 @@ cont = 0
 for i in range(2, 101):
     for j in range(2, 101):
         if c(i, j)>10**6:
-            cont += 1
+            cont += i
 print(cont)
