@@ -1,18 +1,22 @@
-from math import sqrt
+def  sum_of_div_until(m):
+    yield 0
+    yield 1
+    sieve = [1]*m
+    for i in range(2, m):
+        yield sieve[i]
+        for mul in range(i,m,i):
+            sieve[mul]+=i
+    
+upper = 28123
+sum_until = [j for j in sum_of_div_until(upper)]
+abundants = set(j for j in range(12, upper) if sum_until[j]>j)
 
-def is_abundant(n):
-	return sum([k for i in range(1, int(sqrt(n))+1) if n % i == 0 for k in (i, n // i) if k!=n])>n
-
-print(is_abundant(12))
-v = 28123 
-j = set()
-abun = [x for x in range(12, v+1) if is_abundant(x)]
-for i in range(12,v+1):
-    print(i)
-    for n in abun:
-        if n>i or is_abundant(i-n):
+def can_be_written(n):
+    for i in abundants:
+        if i>n:
             break
-        if not is_abundant(i-n):
-            j.add(n)
-            #print(i, n)
-print(sum(j))
+        elif n-i in abundants:
+            return False
+    return True
+
+print(sum([x for x in range(upper) if  can_be_written(x)]))
