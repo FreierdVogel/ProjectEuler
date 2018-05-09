@@ -1,3 +1,4 @@
+from time import time
 from itertools import count
 def sixn():
     yield 2
@@ -17,21 +18,24 @@ def prime_until(m):
             for mult in range(i*i, m, i):
                 sieve[mult]=False
 
-upper=10**3
+
+upper = 10**6
+t0 = time()
 set_primes = set(x for x in prime_until(upper))
-list_primes = list(set_primes)
+list_primes = sorted(list(set_primes))
 mx=0
 mx_len=0
 actual=0
-for i in range(len(set_primes)):
-    for j in range(len(set_primes)):
+for i in range(len(set_primes)//2):
+    #print(i)
+    for j in range(i, len(set_primes)):
         if j<i:
             continue
         if sum(list_primes[i:j]) in set_primes:
             actual=len(list_primes[i:j])
-            if actual>=mx_len:
+            if actual>mx_len:
                 mx_len=actual
                 mx=sum(list_primes[i:j])
         
-print(mx,mx_len)
+print(mx, time()-t0)
 
