@@ -20,4 +20,4 @@ def primes_until(m):
             for mult in range(i * i, m, i):
                 sieve[mult] = False
 
-print(sum(primes_until(10**6)), timer() - start)
+print(sum(primes_until(135)), timer() - start)
