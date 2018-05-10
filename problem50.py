@@ -5,8 +5,8 @@ def sixn():
     yield 3
     for i in count(1):
         i=6*i+1
-        yield i
         yield i-2
+        yield i
 
 def prime_until(m):
     sieve = [True]*m
@@ -19,23 +19,23 @@ def prime_until(m):
                 sieve[mult]=False
 
 
-upper = 10**6
+upper = 10**7
 t0 = time()
-set_primes = set(x for x in prime_until(upper))
-list_primes = sorted(list(set_primes))
+list_primes = list(prime_until(upper))
+set_primes = set(list_primes)
 mx=0
 mx_len=0
 actual=0
-for i in range(len(set_primes)//2):
-    #print(i)
-    for j in range(i, len(set_primes)):
-        if j<i:
-            continue
-        if sum(list_primes[i:j]) in set_primes:
-            actual=len(list_primes[i:j])
+top=len(list_primes)
+result = []
+for i in range(top):
+    for j in range(i+2, top):
+        v=sum(list_primes[i:j])
+        if v>upper:
+            break
+        if v in set_primes:
+            actual=j-i
             if actual>mx_len:
                 mx_len=actual
-                mx=sum(list_primes[i:j])
-        
-print(mx, time()-t0)
-
+                mx=v
+print("La respuesta es", mx, "y he tardado", time()-t0, "en hacerlo sin listas")
