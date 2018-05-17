@@ -1,8 +1,3 @@
-"""
-1.- Lista de primos
-2.- Comprobar en un for in range(n), siendo n impar si se compone de un primo y un doble square
-3.- Generalizar con while.(Cuando sea falso printear n)
-"""
 from itertools import count
 from time import time
 from math import sqrt
@@ -32,11 +27,8 @@ top=100000
 primes_list=list(primes_until(top))
 primes_set=set(primes_list)
 iterator=3
-while is_goldbach(iterator):
-    if primes_list[-1]<iterator:
-        print(top)
-        top+=100000
-        primes_list=list(primes_until(top))    
+while True:
+    if not is_goldbach(iterator):
+        break
     iterator+=2
 print(iterator, time()-t0)
-
