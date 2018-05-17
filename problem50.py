@@ -19,7 +19,7 @@ def prime_until(m):
                 sieve[mult]=False
 
 
-upper = 10**7
+upper = 10**6
 t0 = time()
 list_primes = list(prime_until(upper))
 set_primes = set(list_primes)
@@ -35,7 +35,5 @@ for i in range(top):
             break
         if v in set_primes:
             actual=j-i
-            if actual>mx_len:
-                mx_len=actual
-                mx=v
-print("La respuesta es", mx, "y he tardado", time()-t0, "en hacerlo sin listas")
+            result.append((actual, v))
+print(max(result)[1], time()-t0)
